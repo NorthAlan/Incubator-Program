@@ -1,2 +1,0 @@
-lizhixuan分支与main分支进行了合并
-合并之后，在lizhixuan分支上创建一个文件，放入仓库中。
