@@ -1,2 +1,2 @@
 # Incubator-Program
-Demo - 0917 A
+Demo - 0917
