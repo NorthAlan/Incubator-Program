@@ -1,1 +1,2 @@
 test file by Luka
+git remote set-url origin https://<your-username>:<your-token>@github.com/NorthAlan/Incubator-Program.git
