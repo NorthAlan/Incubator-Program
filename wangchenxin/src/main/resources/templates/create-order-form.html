@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h2 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+        }
+        table {
+            width: 60%;
+            margin-top: 10px;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        form {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="submit"], input[type="checkbox"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        p {
+            margin-top: 10px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h2>Coffee Available Today</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Coffee Name</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="coffee : ${coffeeList}">
+        <td th:text="${coffee.name}">Espresso</td>
+        <td th:text="${coffee.price}">CNY 12.0</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Your Order</h2>
+<form action="#" th:action="@{/order/}" method="post">
+    <label>Customer Name</label>
+    <input type="text" name="customer" required />
+
+    <ul>
+        <li th:each="coffee : ${coffeeList}">
+            <input type="checkbox" name="items" th:value="${coffee.name}" id="${coffee.name}" />
+            <label for="${coffee.name}" th:text="${coffee.name}">Espresso</label>
+        </li>
+    </ul>
+
+    <input type="submit" value="Submit"/>
+    <p th:text="${message}">Message</p>
+</form>
+</body>
+</html>
