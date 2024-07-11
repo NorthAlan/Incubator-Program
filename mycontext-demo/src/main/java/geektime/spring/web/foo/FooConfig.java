@@ -15,7 +15,7 @@ public class FooConfig {
 
     @Bean
     public TestBean testBeanY() {
-        return new TestBean("mather");
+        return new TestBean("mother");
     }
 
 //    @Bean
