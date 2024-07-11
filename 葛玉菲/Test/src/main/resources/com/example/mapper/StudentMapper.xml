@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:名称空间
+     对应接口的全限定名-->
+<mapper namespace="com.example.mapper.StudentMapper">
+    <insert id="add">
+        insert  into `student`(`student_id`,`name`,`email`,`gender`,`department_id`,`birth`) values
+            (#{student_id},#{name},#{email},#{gender},#{department_id},#{birth})
+    </insert>
+
+    <update id="update">
+        update student set student_id=#{student_id}, name=#{name}, email=#{email}, gender=#{gender},
+                       department_id=#{department_id},birth=#{birth}
+        where student_id=#{student_id}
+    </update>
+
+    <delete id="del">
+        delete from student where student_id=#{student_id}
+    </delete>
+
+    <!-- sql语句
+     #{id} 获取参数-->
+    <select id="getById" resultType="com.example.pojo.Student">
+        select * from student where student_id = #{student_id}
+    </select>
+
+    <select id="getAll" resultType="com.example.pojo.Student">
+        select * from student
+    </select>
+</mapper>
+
