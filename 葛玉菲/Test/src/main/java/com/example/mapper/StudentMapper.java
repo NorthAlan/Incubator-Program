@@ -2,7 +2,6 @@ package com.example.mapper;
 
 import com.example.pojo.Student;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -23,4 +22,14 @@ public interface StudentMapper {
     //查询所有
     //@Select("select * from student")
     List<Student> getAll();
+
+    // 分页查询
+    List<Student> getByPage();
+    //PageInfo<Student> getByPage(int PageNum, int PageSize);
+
+    /**
+     * 分页查询用户
+     * @return
+     */
+    List<Student> selectPage();
 }

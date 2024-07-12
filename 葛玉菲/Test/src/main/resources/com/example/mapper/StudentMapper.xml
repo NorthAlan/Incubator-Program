@@ -16,7 +16,7 @@
         where student_id=#{student_id}
     </update>
 
-    <delete id="del">
+    <delete id="delete">
         delete from student where student_id=#{student_id}
     </delete>
 
@@ -29,5 +29,14 @@
     <select id="getAll" resultType="com.example.pojo.Student">
         select * from student
     </select>
+    
+    <select id="getByPage" resultType="com.example.pojo.Student">
+        select * from student
+    </select>
+
+    <select id="selectPage"  resultType="com.example.pojo.Student">
+        select * from student
+    </select>
+
 </mapper>
 

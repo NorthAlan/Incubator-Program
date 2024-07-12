@@ -1,8 +1,13 @@
 package com.example.service;
 
+import com.example.config.PageRequest;
+import com.example.config.PageResult;
+import com.example.config.PageUtils;
 import com.example.mapper.StudentMapper;
 import com.example.pojo.Student;
 import com.example.service.Impl.IStudentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,15 +31,6 @@ public class StudentService implements IStudentService {
 
     @Transactional
     public String update(Student student) {
-              /*
-        * if (emp==null || emp.getEmpno()==null || emp.getEname()==null || "".equals(emp.getEname())){
-            return "fail";
-        }
-        int update = empMapper.update(emp);
-        return update>0?"success":"fail";
-
-
-        * */
         if(student==null || student.getName()==null || "".equals(student.getName())) {
             return "fail";
         }
@@ -48,7 +44,7 @@ public class StudentService implements IStudentService {
             return "fail";
         }
         int del = studentMapper.delete(id);
-        return del>0 ? "success" : "fail";
+        return del > 0 ? "success" : "fail";
 
     }
 
@@ -62,5 +58,27 @@ public class StudentService implements IStudentService {
 
     public List<Student> getAll() {
         return studentMapper.getAll();
+    }
+
+    public PageInfo<Student> getByPage(int PageNum, int PageSize) {
+        PageHelper.startPage(PageNum, PageSize);
+        List<Student> list = studentMapper.getByPage();
+        return new PageInfo<>(list);
+    }
+
+    /**
+     * 调用分页插件完成分页
+     */
+
+    @Override
+    public PageResult findPage(PageRequest pageRequest) {
+        return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
+    }
+    private PageInfo<Student> getPageInfo(PageRequest pageRequest) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Student> sysMenus = studentMapper.selectPage();
+        return new PageInfo<Student>(sysMenus);
     }
 }

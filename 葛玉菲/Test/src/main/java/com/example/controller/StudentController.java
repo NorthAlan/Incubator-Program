@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.config.PageRequest;
 import com.example.pojo.Student;
 import com.example.service.StudentService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +41,15 @@ public class StudentController {
         return studentService.getAll();
     }
 
+    @GetMapping("/page")
+    public PageInfo<Student> getByPage(@RequestParam int PageNum, @RequestParam int PageSize) {
+        return studentService.getByPage(PageNum, PageSize);
+    }
 
+    @PostMapping(value="/findPage")
+    public Object findPage(@RequestBody PageRequest pageQuery) {
+        return studentService.findPage(pageQuery);
+    }
 
 
 

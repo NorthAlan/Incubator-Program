@@ -13,3 +13,10 @@ spring:
       matching-strategy: ant_path_matcher
 mybatis:
   type-aliases-package: com.example.pojo
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
